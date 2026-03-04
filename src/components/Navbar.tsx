@@ -77,6 +77,16 @@ export function Navbar() {
     }
   }
 
+  const handleOpenSignIn = () => {
+    setAuthView("login")
+    setAuthModalOpen(true)
+  }
+
+  const handleOpenSignUp = () => {
+    setAuthView("signup")
+    setAuthModalOpen(true)
+  }
+
 
   return (
     <header className="w-full py-4 bg-white sticky top-0 z-50 mb-8">
@@ -139,14 +149,14 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 className="text-[#047857] bg-[#D1FAE5] hover:bg-gray-50 text-lg font-medium px-6 py-6"
-                onClick={() => setAuthModalOpen(true)}
+                onClick={handleOpenSignIn}
               >
                 Sign In
               </Button>
-              <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
+              <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} initialView={authView} />
               {/* <Link href="/dashboard"> */}
               <Button
-                onClick={() => setAuthModalOpen(true)}
+                onClick={handleOpenSignUp}
                 className="bg-[#059669] hover:bg-[#047857] text-white text-lg font-medium px-6 py-6 rounded-md">
                 Create free account
               </Button>
@@ -209,20 +219,21 @@ export function Navbar() {
                     variant="ghost"
                     className="text-[#047857] w-full bg-[#D1FAE5] hover:bg-gray-50 font-medium px-6 py-6"
                     onClick={() => {
-                      setAuthModalOpen(true)
+                      handleOpenSignIn()
                       setIsMenuOpen(false)
                     }}
                   >
                     Sign In
                   </Button>
-                  <Link href="/dashboard">
-                    <Button
-                      className="w-full bg-[#059669] text-white text-lg font-medium hover:bg-[#047857] py-6 rounded-md"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Create free account
-                    </Button>
-                  </Link>
+                  <Button
+                    className="w-full bg-[#059669] text-white text-lg font-medium hover:bg-[#047857] py-6 rounded-md"
+                    onClick={() => {
+                      handleOpenSignUp()
+                      setIsMenuOpen(false)
+                    }}
+                  >
+                    Create free account
+                  </Button>
                 </div>
               </div>
             </div>

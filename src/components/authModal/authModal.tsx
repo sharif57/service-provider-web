@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"; // shadcn/ui modal
 import Login from "./login";
 import SignUp from "./signUp";
@@ -12,8 +12,22 @@ import ResetPasswordOtp from "./resetOtp";
 
 type AuthView = "login" | "signup" | "forgot" | "verify" | "reset" | '/' | 'resetOtp';
 
-export default function AuthModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
-  const [view, setView] = useState<AuthView>("login");
+export default function AuthModal({
+  open,
+  onOpenChange,
+  initialView = "login",
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  initialView?: AuthView;
+}) {
+  const [view, setView] = useState<AuthView>(initialView);
+
+  useEffect(() => {
+    if (open) {
+      setView(initialView);
+    }
+  }, [open, initialView]);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange} >

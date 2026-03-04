@@ -16,7 +16,7 @@ import { PopupRequest, AuthenticationResult } from "@azure/msal-browser";
 
 type AuthView = "login" | "signup" | "forgot" | '/';
 
-export default function Login({ switchView  }: { switchView: (v: AuthView) => void }) {
+export default function Login({ switchView }: { switchView: (v: AuthView) => void }) {
   const router = useRouter();
   const { instance } = useMsal(); // MSAL instance from provider
 
@@ -132,9 +132,23 @@ export default function Login({ switchView  }: { switchView: (v: AuthView) => vo
               {loading ? "Signing In..." : "Sign In"}
             </Button>
 
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 bg-[#F9FAFB] text-gray-500 font-medium">Or</span>
+              </div>
+            </div>
+
             {/* Social Logins */}
-            <div className="flex justify-center gap-4 mt-6">
+            <div className="flex justify-center">
               <GoogleLogin
+                theme="outline"
+                size="large"
+                shape="rectangular"
+                text="continue_with"
+                width="380"
                 onSuccess={handleGoogleSuccess}
                 onError={() => toast.error("Google Login Failed")}
               />

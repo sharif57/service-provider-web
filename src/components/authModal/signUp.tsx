@@ -213,14 +213,19 @@ export default function SignUp({ switchView }: { switchView: (v: AuthView) => vo
                                     <div className="w-full border-t border-gray-200"></div>
                                 </div>
                                 <div className="relative flex justify-center text-sm">
-                                    <span className="px-4 bg-white text-gray-500 font-medium">Or</span>
+                                    <span className="px-4 bg-[#F9FAFB] text-gray-500 font-medium">Or</span>
                                 </div>
                             </div>
 
                             {/* Social Login Buttons */}
-                            <div className="space-y-2">
+                            <div className="flex justify-center">
 
                                 <GoogleLogin
+                                    theme="outline"
+                                    size="large"
+                                    shape="rectangular"
+                                    text="continue_with"
+                                    width="380"
                                     onSuccess={handleGoogleSuccess}
                                     onError={() => toast.error("Google Login Failed")}
                                 />
